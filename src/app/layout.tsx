@@ -1,7 +1,10 @@
 import "~/styles/globals.css";
 
 import { type Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Instrument_Sans } from "next/font/google";
+import { SidebarProvider, SidebarTrigger } from "~/components/ui/sidebar";
+import { AppSidebar } from "~/components/app-sidebar";
+import { TooltipProvider } from "~/components/ui/tooltip";
 
 export const metadata: Metadata = {
     title: "Create T3 App",
@@ -9,17 +12,27 @@ export const metadata: Metadata = {
     icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-const geist = Geist({
+const instrumentSans = Instrument_Sans({
     subsets: ["latin"],
-    variable: "--font-geist-sans",
+    variable: "--font-instrument-sans",
+    display: "swap",
 });
 
 export default function RootLayout({
     children,
 }: Readonly<{ children: React.ReactNode }>) {
     return (
-        <html lang="en" className={`${geist.variable} dark`}>
-            <body>{children}</body>
+        <html lang="en" className={`${instrumentSans.variable} dark`}>
+            <body className="antialiased">
+                <TooltipProvider>
+                    <SidebarProvider>
+                        <AppSidebar />
+                        <main className="w-full">
+                            {children}
+                        </main>
+                    </SidebarProvider>
+                </TooltipProvider>
+            </body>
         </html>
     );
 }
