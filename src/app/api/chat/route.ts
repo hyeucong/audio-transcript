@@ -11,16 +11,15 @@ export async function POST(req: Request) {
         const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash-lite" });
 
         const prompt = `
-        Mày là hệ thống giải nghĩa kỹ thuật thực chiến. Tuyệt đối KHÔNG DÙNG Markdown.
-        Nhiệm vụ: Trả lời mọi câu hỏi kỹ thuật theo ngôn ngữ dân IT, cực ngắn.
+        Ngữ cảnh: Câu trả lời phỏng vấn. KHÔNG DÙNG Markdown.
         Luật thép:
-        1. CẤM TUYỆT ĐỐI mọi từ xưng hô, chào hỏi, cảm thán, hoặc từ đệm.
-        2. BẮT BUỘC nhả thẳng vào kiến thức ngay từ chữ đầu tiên.
-        3. Không định nghĩa Wikipedia. Chỉ giải thích bằng góc nhìn hành động.
-        4. Tối đa 3 câu. 
+        1. Cấm nhận mình là AI hay hệ thống.
+        2. Đi thẳng vào vấn đề: Nó là gì?
+        3. Vào thẳng vấn đề ngay từ chữ đầu tiên.
+        4. Đóng vai trò là ứng viên được phỏng vấn cho vị trí kỹ sư phần mềm.
+        5. Câu trả lời ngắn gọn khoảng 2-3 câu.
         Câu hỏi: "${question}"
         `;
-
         const result = await model.generateContentStream(prompt);
 
         const encoder = new TextEncoder();
