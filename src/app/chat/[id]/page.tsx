@@ -20,7 +20,7 @@ const MessageBubble = React.memo(({ msg }: { msg: Message }) => (
             "w-full px-4 py-3 shadow-sm border-none rounded-2xl",
             msg.role === "user" ? "bg-primary text-primary-foreground" : "bg-muted/50"
         )}>
-            <div className="whitespace-pre-line text-xs leading-relaxed">
+            <div className="whitespace-pre-line text-sm leading-relaxed">
                 {msg.role === "ai" && msg.content === "" ? (
                     <div className="flex gap-1 py-1">
                         <div className="h-1.5 w-1.5 rounded-full bg-gray-400 animate-pulse" />
@@ -325,7 +325,7 @@ export default function ChatPage() {
                     {isTranscribing && liveTranscript && (
                         <div className="flex flex-row-reverse gap-4 opacity-70">
                             <Card className="w-full px-4 py-3 border border-dashed border-red-400/60 rounded-2xl bg-red-500/5">
-                                <p className="text-xs leading-relaxed italic text-red-300">
+                                <p className="text-sm leading-relaxed italic text-red-300">
                                     {liveTranscript}
                                 </p>
                             </Card>
